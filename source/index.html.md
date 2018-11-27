@@ -5,6 +5,9 @@ title: XDAEX Trading and Market Data API Specification ^XDAEX 交易及行情API
 #   - json: JSON 
 
 search: true
+
+toc_footers:
+    - Release Number 4.2.0
 ---
 
 # 1. Quick Start ^快速入门
