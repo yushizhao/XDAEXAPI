@@ -1,5 +1,5 @@
 ---
-title: Hashkey Pro Trading and Market Data API Specification ^Hashkey Pro 交易及行情API规范
+title: HashKey Pro Trading and Market Data API Specification ^HashKey Pro 交易及行情API规范
 
 # language_tabs: # must be one of https://git.io/vQNgJ
 #   - json: JSON 
