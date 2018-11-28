@@ -1,5 +1,5 @@
 ---
-title: XDAEX Trading and Market Data API Specification ^XDAEX 交易及行情API规范
+title: Hashkey Pro Trading and Market Data API Specification ^Hashkey Pro 交易及行情API规范
 
 # language_tabs: # must be one of https://git.io/vQNgJ
 #   - json: JSON 
@@ -42,9 +42,9 @@ API 用户需要使用自己的 API-KEY 完成身份认证。 API-KEY 的申请�
 * 当用户选择“ HMAC ”时，除 API-KEY 之外，会对应生成一个密钥。用户和交易所各持有一份该密钥的副本。<b>（该密钥与您的账户安全密切相关，请勿泄露！）</b>
 * 若用户的私钥或密钥发生丢失、被盗用等异常情况，可在交易所网页的“用户中心-- API 接口”中删除对应的 API-KEY ，再申请新的 API-KEY 。
 
-For security reasons, an API-KEY can be blacklisted by the administrator. If the API-KEY is blacklisted, the API user can send an email to support@xdaex.com and apply to be removed from the blacklist.
+For security reasons, an API-KEY can be blacklisted by the administrator. If the API-KEY is blacklisted, the API user can send an email to support@pro.hashkey.com and apply to be removed from the blacklist.
 
-由于安全原因，某 API-KEY 可能被管理员加入黑名单。若 API-KEY 处于黑名单中， API 用户可发送邮件至 support@xdaex.com ，申请从黑名单中移除。
+由于安全原因，某 API-KEY 可能被管理员加入黑名单。若 API-KEY 处于黑名单中， API 用户可发送邮件至 support@pro.hashkey.com ，申请从黑名单中移除。
 
 ### 1.1.2. Query Info and Subscribe to WebSocket Flow ^查询信息和订阅 WebSocket 流
 Before trading, it is recommended to call the following REST interface to query the server time, instruments, asset balances and other related information to ensure that the user's trading program is in the correct status:
@@ -94,37 +94,37 @@ Note: For related information about API access management, rate limit and test/p
 In addition to the production environment, where users interact with the real market, the exchange provides other two environments:
 
 * Test Environment: In order to protect users' assets, it is highly recommended that API users complete the necessary system tests in the test environment before accessing the production environment for trading. 
-  - Domain name: api-test.xdaex.com
+  - Domain name: [api-test.pro.hashkey.com](api-test.pro.hashkey.com)
 * Preview Environment: To help users prepare for API updates, conduct compatible tests for instance, all API updates take effect in the preview environment first. Then, after a preannounced period of time, the test environment and the production environment will be updated.
-  - Domain name: api-preview.xdaex.com
+  - Domain name: [api-preview.pro.hashkey.com](api-preview.pro.hashkey.com)
 
 在与真实市场交互的生产环境之外，交易所还为 API 用户们提供了两种环境：
 
 * 测试环境：为了保护用户资产，建议 API 用户在测试环境中完成必要的系统测试后，再接入生产系统进行交易。
-  - 域名：api-test.xdaex.com
+  - 域名：[api-test.pro.hashkey.com](api-test.pro.hashkey.com)
 * 预览环境：每次 API 功能迭代时会先对预览环境进行升级，以便于用户尽早开展兼容性测试等升级准备工作，并将在约定的一段时间后同步更新测试环境和生产环境。
-  - 域名：api-preview.xdaex.com
+  - 域名：[api-preview.pro.hashkey.com](api-preview.pro.hashkey.com)
 
-API users can send an email to support@xdaex.com to apply for accessing the test environment and the preview environment.
+API users can send an email to support@pro.hashkey.com to apply for accessing the test environment and the preview environment.
 
-API 用户可以发送邮件至 support@xdaex.com ，申请使用测试环境和预览环境。
+API 用户可以发送邮件至 support@pro.hashkey.com ，申请使用测试环境和预览环境。
 
 # 2. REST Interface Description<br \>&emsp;^REST接口说明
 ## 2.1. HTTP Request URL<br \>&emsp;^HTTP 请求 URL
-The REST interface requests a URL as: https://xdaex.com/APITrade/v1/account/assets
+The REST interface requests a URL as: https://pro.hashkey.com/APITrade/v1/account/assets
 This request URL contains the following main components:
 
 * Protocol: https
-* Domain name: xdaex.com (To access the test\preview environment, please replace it with the corresponding domain name.)
+* Domain name: pro.hashkey.com (To access the test\preview environment, please replace it with the corresponding domain name.)
 * Interface name: APITrade
 * Version: v1
 * Path: Different functions need to be accessed via different paths. For example: query the user's asset balance via /account/assets.
 
-REST 接口请求 URL 形如： https://xdaex.com/APITrade/v1/account/assets
+REST 接口请求 URL 形如： https://pro.hashkey.com/APITrade/v1/account/assets
 该 URL 中主要包括以下组成部分：
 
 * 协议: https
-* 域名: xdaex.com （如访问测试或预览环境，则需替换成指定的域名）
+* 域名: pro.hashkey.com （如访问测试或预览环境，则需替换成指定的域名）
 * 接口名称: APITrade
 * 版本: v1
 * 路径: 使用不同功能要访问不同的路径，例如：查询用户资产余额对应的路径是 /account/assets
@@ -627,22 +627,22 @@ HTML5 定义了 WebSocket 协议，允许服务端向客户端推送数据，能
 
 ## 3.1. WebSocket Request URL<br \>&emsp;^WebSocket 请求 URL
 
-The WebSocket interface request URL is: wss://xdaex.com/APITradeWS/v1/messages.
+The WebSocket interface request URL is: wss://pro.hashkey.com/APITradeWS/v1/messages.
 
 This request URL contains the following main components:
 
 * Protocol: wss
-* Domain name: xdaex.com (To access the test\preview environment, please replace it with the corresponding domain name.)
+* Domain name: pro.hashkey.com (To access the test\preview environment, please replace it with the corresponding domain name.)
 * Interface name: APITradeWS
 * Version: v1
 * Path: /messages
 
-WebSocket 接口请求 URL 为: wss://xdaex.com/APITradeWS/v1/messages 。
+WebSocket 接口请求 URL 为: wss://pro.hashkey.com/APITradeWS/v1/messages 。
 
 URL 中主要包括以下组成部分：
 
 * 协议: wss
-* 域名: xdaex.com （如访问测试或预览环境，则需替换成指定的域名）
+* 域名: pro.hashkey.com （如访问测试或预览环境，则需替换成指定的域名）
 * 接口名称: APITradeWS
 * 版本: v1
 * 路径: /messages
@@ -974,9 +974,9 @@ respCode <br /> 应答码 |             respMsg <br />应答消息     |      No
 2021|Order price type error                       |Order price type error. Only limit order (orderPriceType: limit) is supported now. <br /> 订单价格类型错误。目前支持限价订单（ orderPriceType:  limit ）。
 2022|TimeCondition error                          |TimeCondition error. Only GTC (Good Till Cancel) is supported now. <br /> 订单有效期类型错误，目前支持 GTC（撤销前一直有效）。
 
-For any questions related to the above, please sending an email to support@xdaex.com.
+For any questions related to the above, please sending an email to support@pro.hashkey.com.
 
-若 API 用户对于以上仍有疑问，请发送邮件至 support@xdaex.com 。
+若 API 用户对于以上仍有疑问，请发送邮件至 support@pro.hashkey.com 。
 
 ---
 Version <br />版本 |Revision Date <br />修订日期|Change Log <br />修订摘要
