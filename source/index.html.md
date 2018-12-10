@@ -908,23 +908,12 @@ In order to implement the heartbeat mechanism, the WebSocket subscriber should s
 为了实现心跳机制，WebSocket 订阅方每<b>15</b>秒向服务器发送一次"ping" 消息，然后服务器会向订阅方回复一个 "pong" 消息。
 
 # 4. Sample Code ^示例代码
-## 4.1. REST Interface ^REST 接口
-* Java
-    +  [Java SDK](https://github.com/XDAEX/API/raw/master/java/xdaex-trading-sdk-1.0.jar)
-    +  [Java Sample](https://github.com/XDAEX/API/wiki/REST_sample_java)
-* Python
-    +  [Python Sample](https://github.com/XDAEX/API/wiki/REST_sample_python)
-* Golang
-    +  [Golang Package](https://github.com/XDAEX/API/tree/master/golang/eccutils)
-    +  [Golang Sample](https://github.com/XDAEX/API/wiki/REST_sample_golang)
-* C++
-    +  [C++ header](https://github.com/XDAEX/API/raw/master/cpp/eccutils.hpp)
-    +  [C++ Sample](https://github.com/XDAEX/API_Docs/wiki/REST_sample_cpp)
 
-## 4.2. WebSocket Subscription<br \>&emsp;^WebSocket 订阅
-* [JavaScript](https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_javascript)
-* [Golang](https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_golang)
-* [C++](https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_cpp)
+* [Golang](https://github.com/hashkeypro/api-src/tree/master/golang)
+* [Python](https://github.com/hashkeypro/api-src/tree/master/python)
+* [C++](https://github.com/hashkeypro/api-src/tree/master/cpp)
+* [JavaScript](https://github.com/hashkeypro/api-src/tree/master/javascript)
+* [Java](https://github.com/hashkeypro/api-src/tree/master/java)
 
 # 5. Request-Response Code Table<br \>&emsp;^请求应答编码对照表
 ## 5.1. Success Response ^成功应答
