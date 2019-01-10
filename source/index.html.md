@@ -8,6 +8,8 @@ search: true
 
 toc_footers:
     - Release Number 4.2.0
+    - <a href='https://hashkeypro.github.io/api'>API home page</a>
+    - <a href='https://pro.hashkey.com'>Hashkey Pro Official Site</a>
 ---
 
 # 1. Quick Start ^快速入门
