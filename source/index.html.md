@@ -7,7 +7,7 @@ title: HashKey Pro Trading and Market Data API Specification ^HashKey Pro 交易
 search: true
 
 toc_footers:
-    - Release Number 4.2.0
+    - Release Number 4.3.0
     - <a href='https://hashkeypro.github.io/api'>API home page</a>
     - <a href='https://pro.hashkey.com'>Hashkey Pro Official Site</a>
 ---
@@ -148,86 +148,62 @@ REST 接口请求 URL 形如： https://pro.hashkey.com/APITrade/v1/account/asse
   - Combine data: data = timestamp + HttpMethod + version + path + jsonBody
     - timestamp is the timestamp（UTC）in the HTTP request message header.
     - HTTP Method can be GET or POST, all in uppercase.
-    - version + path, such as: /v1/account/assets
+    - version + path, such as: /v1/info/version
       - The jsonBody is in JSON format. If the HTTP Method is GET, the jsonBody must be empty.
-      - GET request example: data = "1539324192349GET/v1/account/assets"
+      - GET request example: data = "1548828786000GET/v1/info/version"
       - POST request example: data = "1539324192349POST/v1/order/cancelByLocalID{"orderLocalID":"1234567891234"}"
-  - Use SHA256 algorithm to get the hash of the data, then convert the hash into a hexadecimal string in lowercase: hashedData = SHA256(data) 
+  - Use the private key to sign the hash of the data (Algorithm: ECDSA, Hash Function: Keccak 256, Elliptic Curve: secp256k1): sign (data)
     - Example:
       - Input:
-        - data = "1539324192349GET/v1/account/assets"
+        - data = "1548828786000GET/v1/info/version"
+        - privateKey = "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo="
       - Output:
-        - hashedData = "5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23"
-  - Use the private key to sign the hash of the data (Algorithm: ECC, Elliptic Curve: secp256k1): sign (hashedData)
-    - Example:
-      - Input:
-        - hashedData = "5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23"
-        - privateKey = "VAoASo72TbEYsasQAD64nHlZVyBglPw13kfvlqM1j5Z="
-      - Output:
-        - signedData = {"r":"egMRmhmMNL9N94eKxj0xCDgh115u54cWPHNQEKt4nL4=", "s":"QlgLvEbzRqIBVEsusI7gbDnVtpqVxHWBQw2CdgBrpUU=","v":27}
+        - signedData = {"r":"A+wY1dLtlur/dZsTepZEBWbA8rMoSkwAIeq42CZqATU=","s":"K0Sw5UlgYSzmmMMCBwdHWYiAbEah7dcCgo8H0h6rRMM=","v":28}
 - 获得 AUTH-TYPE 为 "PUB-PRIV" 的 API-SIGNATURE 的步骤
   - 拼装原文：data = timestamp + HttpMethod + version + path + jsonBody
     - timestamp 就是HTTP请求消息头中的时间戳（UTC）
     - HTTP Method 可以是 GET 或 POST，全部为大写格式
-    - version + path， 如：/v1/account/assets
+    - version + path， 如：/v1/info/version
     - jsonBody 采用了 json 格式，如果是 GET 请求，则 jsonBody 为空
-      - GET 请求范例：data = "1539324192349GET/v1/account/assets"
+      - GET 请求范例：data = "1548828786000GET/v1/info/version"
       - POST 请求范例：data = "1539324192349POST/v1/order/cancelByLocalID{"orderLocalID":"1234567891234"}"
-  - 用 SHA256 算法对原文计算 hash ，得到小写16进制字符串： hashedData = SHA256(data)
+  - 用私钥对 data 的哈希摘要 签名（算法：ECDSA，哈希函数：Keccak 256, 椭圆曲线：secp256k1 ）: sign(data)
     - 范例：
       - 输入：
-        - data = "1234567891234GET/v1/account/assets"
+        - hashedData = "1548828786000GET/v1/info/version"
+        - privateKey = "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo="
       - 输出：
-        - hashedData = "5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23"
-  - 用私钥对 hash 结果签名（算法：ECC，椭圆曲线：secp256k1 ）: sign(hashedData)
-    - 范例：
-      - 输入：
-        - hashedData = "5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23"
-        - privateKey = "VAoASo72TbEYsasQAD64nHlZVyBglPw13kfvlqM1j5Z="
-      - 输出：
-        - signedData = {"r":"egMRmhmMNL9N94eKxj0xCDgh115u54cWPHNQEKt4nL4=", "s":"QlgLvEbzRqIBVEsusI7gbDnVtpqVxHWBQw2CdgBrpUU=","v":27}
+        - signedData = {"r":"A+wY1dLtlur/dZsTepZEBWbA8rMoSkwAIeq42CZqATU=","s":"K0Sw5UlgYSzmmMMCBwdHWYiAbEah7dcCgo8H0h6rRMM=","v":28}
 - Steps to get an API-SIGNATURE with AUTH-TYPE "HMAC"
   - Combine data: data = timestamp + HttpMethod + version + path + jsonBody
     - timestamp is the timestamp (UTC) in the HTTP request message header.
     - HTTP Method can be GET or POST, all in uppercase.
-    - version + path, such as: /v1/account/assets
+    - version + path, such as: /v1/info/version
       - The jsonBody is in JSON format. If the HTTP Method is GET, the jsonBody must be empty.
-      - GET request example: data = "1539324192349GET/v1/account/assets"
+      - GET request example: data = "1548828786000GET/v1/info/version"
       - POST request example: data = "1539324192349POST/v1/order/cancelByLocalID{"orderLocalID":"1234567891234"}"
-  - Use SHA256 algorithm to get the hash of the data, then convert the hash into a hexadecimal string in lowercase: hashedData = SHA256(data) 
+  - Derive the message authentication code from the hash and the secret key (Algorithm: SHA256HMAC): SHA256HMAC (secretKey, data)
     - Example:
       - Input:
-        - data = "1539324192349GET/v1/account/assets"
+        - data = "1548828786000GET/v1/info/version"
+        - secretKey = "vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw="
       - Output:
-        - hashedData = "5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23"
-  - Derive the message authentication code from the hash and the secret key (Algorithm: SHA256HMAC): SHA256HMAC (secretKey, hashedData)
-    - Example:
-      - Input:
-        - hashedData = "5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23"
-        - secretKey = "0adabfc46fa8062d92a4e8313ffce285efbb70dfcdb1e3d0c415dd17759a8303"
-      - Output:
-        - signedData = "Gkg0nwKpeQNw7h3hSiNGH1jem2y9M+vILdSDnG3ucSQ="
+        - signedData = "ApWKKdIA50Jml757tWkaSs9ZeTObwLMPh1cAaVBZgD0="
 - 获得对应 AUTH-TYPE 为 "HMAC" 的 API-SIGNATURE 的步骤
   - 拼装原文：data = timestamp + HttpMethod + version + path + jsonBody
     - timestamp 就是HTTP请求消息头中的时间戳（UTC）
     - HTTP Method 可以是 GET 或 POST，全部为大写格式
-    - version + path， 如：/v1/account/assets
+    - version + path， 如：/v1/info/version
     - jsonBody 采用了 json 格式，如果是 GET 请求，则 jsonBody 为空
-      - GET 请求范例：data = "1539324192349GET/v1/account/assets"
+      - GET 请求范例：data = "1548828786000GET/v1/info/version"
       - POST 请求范例：data = "1539324192349POST/v1/order/cancelByLocalID{"orderLocalID":"1234567891234"}"
-  - 用 SHA256 算法对原文计算 hash ，得到小写16进制字符串： hashedData = SHA256(data)
+  - 用密钥结合原文的 hash 计算出消息验证码（算法： SHA256HMAC ）: SHA256HMAC(secretKey, data)
     - 范例：
       - 输入：
-        - data = "1234567891234GET/v1/account/assets"
+        - data = "1548828786000GET/v1/info/version"
+        - secretKey = "vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw="
       - 输出：
-        - hashedData = "5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23"
-  - 用密钥结合原文的 hash 计算出消息验证码（算法： SHA256HMAC ）: SHA256HMAC(secretKey, hashedData)
-    - 范例：
-      - 输入：
-        - hashedData = "5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23"
-        - secretKey = "0adabfc46fa8062d92a4e8313ffce285efbb70dfcdb1e3d0c415dd17759a8303"
-      - 输出：
-        - signedData = "Gkg0nwKpeQNw7h3hSiNGH1jem2y9M+vILdSDnG3ucSQ="
+        - signedData = "ApWKKdIA50Jml757tWkaSs9ZeTObwLMPh1cAaVBZgD0="
 
 ## 2.3. Query Server Time<br \>&emsp;^查询服务器时间
 
@@ -253,7 +229,7 @@ Query the server time in UTC (Coordinated Universal Time).
  
 ```javascript
 {//example
-    "version": "4.1.2"    //API release number ^API 发行号
+    "version": "4.3.0"    //API release number ^API 发行号
 }
 ```
 
@@ -490,7 +466,7 @@ The interface can cancel up to a maximum of <font color="#dd0000" face="black">1
     "actionTimestamp": "1536298968123",    //Timestamp of the last change to the order status^ 状态变化时间戳
     "insertDate": "20180829",              //Date of insertion ^下单日期
     "insertTime": "07:45:10",              //Time of insertion ^下单时间
-    "insertTimestamp": "1536298968",       //Timestamp of insertion ^下单时间戳
+    "insertTimestamp": "1536298968123",       //Timestamp of insertion ^下单时间戳
     "cancelDate": "20180907",              //Date of cancellation ^撤单日期
     "cancelTime": "05:42:57",              //Time of cancellation ^撤单时间
 }
@@ -512,8 +488,8 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
     
 ```javascript
 {//example
-    "startTimestamp": "1420674445",    //Start timestamp of query (optional) ^查询起始时间戳（非必填）
-    "endTimestamp": "1420674567",      //End timestamp of query (optional) ^查询结束时间戳（非必填）
+    "startTimestamp": "1420674445123",    //Start timestamp of query (optional) ^查询起始时间戳（非必填）
+    "endTimestamp": "1420674567123",      //End timestamp of query (optional) ^查询结束时间戳（非必填）
     "orderStatus": "active",           //Order status (optional) {(active-order still in order book, corresponding to status 1, 3), (closed-order not in order book, corresponding to status 0, 2, 4, 5, 6), (not specified or an empty string - all status)} ^订单状态（非必填）{(active-订单在订单簿中，对应状态1、3), (closed-订单不在订单簿中，对应状态0、2、4、5、6), (未指定本项或本项为空字符串-对应所有状态)｝。
     "instrumentID": "ETH-BTC",         //Instrument ID (optional) ^合约ID（非必填）
     "orderSysID": "1412943752000004"   //Order system ID (optional) ^系统订单ID（非必填）
@@ -538,7 +514,7 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
     "actionTimestamp": "1536298968123",    //Timestamp of the last change to the order status^ 状态变化时间戳
     "insertDate": "20180829",             //Date of insertion ^下单日期
     "insertTime": "07:45:10",             //Time of insertion ^下单时间
-    "insertTimestamp": "1536298968",      //Timestamp of insertion ^下单时间戳
+    "insertTimestamp": "1536298968123",      //Timestamp of insertion ^下单时间戳
     "cancelDate": "20180907",             //Date of cancellation ^撤单日期
     "cancelTime": "05:42:57",             //Time of cancellation ^撤单时间
 }
@@ -558,8 +534,8 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
   
 ```javascript
 {//example
-    "startTimestamp": "1420674445",  //Start timestamp of query (optional) ^查询起始时间戳（非必填）
-    "endTimestamp": "1420674445",    //End timestamp of query (optional) ^查询结束时间戳（非必填）
+    "startTimestamp": "1420674445123",  //Start timestamp of query (optional) ^查询起始时间戳（非必填）
+    "endTimestamp": "1420674445123",    //End timestamp of query (optional) ^查询结束时间戳（非必填）
     "instrumentID": "ETH-BTC"        //Instrument ID (optional) ^合约ID（非必填）
 }
 ```
@@ -580,7 +556,7 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
         "fee": "0.1",                           //Fee ^手续费
         "tradeDate": "20180829",                //Date of trade ^成交日期
         "tradeTime": "07:45:10",                //Time of trade ^成交时间
-        "tradeTimestamp": "1420674445"          //Timestamp of trade ^成交时间戳
+        "tradeTimestamp": "1420674445123"          //Timestamp of trade ^成交时间戳
     },
     ...
 ]
@@ -667,13 +643,13 @@ API Users can subscribe to the private message flows published by the server. Th
 
 API 接入用户可通过订阅方式获取由交易所推送的私有消息流。提交私有流订阅请求时需要通过 API-KEY 进行认证。
 
-- Use the string "WSS/APITradeWS/v1/messages" directly (<font color="#dd0000" face="black">no need to hash the string</font>) to generate a digital signature or a message authentication code. 
+- Use the string "WSS/APITradeWS/v1/messages" to generate a digital signature or a message authentication code. 
 
-- 直接使用字串"WSS/APITradeWS/v1/messages"（<font color="#dd0000" face ="black">不需要对它计算hash </font>）生成数字签名或消息验证码。
+- 使用字串 "WSS/APITradeWS/v1/messages" 生成数字签名或消息验证码。
 
 - Steps to get an API-SIGNATURE with AUTH-TYPE "PUB-PRIV"
 
-  - Use the private key to sign the string "WSS/APITradeWS/v1/messages" (Algorithm: ECC, Elliptic Curve: secp256k1): sign ("WSS/APITradeWS/v1/messages")
+  - Use the private key to sign the string "WSS/APITradeWS/v1/messages" (Algorithm: ECDSA, Hash function: Keccak 256, Elliptic Curve: secp256k1): sign ("WSS/APITradeWS/v1/messages")
     - Example:
       - Input:
         - data = "WSS/APITradeWS/v1/messages"
@@ -683,7 +659,7 @@ API 接入用户可通过订阅方式获取由交易所推送的私有消息流�
 
 - 获得 AUTH-TYPE 为 "PUB-PRIV" 的 API-SIGNATURE 的步骤
 
-  - 用私钥对字串 "WSS/APITradeWS/v1/messages" 签名（算法： ECC ，椭圆曲线： secp256k1 ）: sign("WSS/APITradeWS/v1/messages")
+  - 用私钥对字串 "WSS/APITradeWS/v1/messages" 签名（算法： ECDSA， 哈希函数： Keccak 256, 椭圆曲线： secp256k1）: sign("WSS/APITradeWS/v1/messages")
     - 范例：
       - 输入：
         - data = "WSS/APITradeWS/v1/messages"
@@ -737,7 +713,7 @@ After subscribing to a private flow, the subscriber will receive the following t
     "actionTimestamp": "1536298968123",    //Timestamp of the last change to the order status^ 状态变化时间戳
     "insertDate": "20180907",              //Date of insertion ^下单日期
     "insertTime": "05:42:38",              //Time of insertion ^下单时间
-    "insertTimestamp": "1536298968",       //Timestamp of insertion ^下单时间戳
+    "insertTimestamp": "1536298968123",       //Timestamp of insertion ^下单时间戳
     "cancelDate": "20180907",              //Date of cancellation ^撤单日期
     "cancelTime": "05:42:57",              //Time of cancellation ^撤单时间
 }
@@ -836,7 +812,7 @@ The following message flows can be subscribed without API-SIGNATURE.
     "volume ": "0.03",              //Traded volume in the execution ^本次成交的数量
     "tradeDate": "20180907",        //Date of trade ^成交日期
     "tradeTime": "10:08:06",        //Time of trade ^成交时间
-    "tradeTimestamp": "1420674445"  //Timestamp of trade ^成交时间戳
+    "tradeTimestamp": "1420674445123"  //Timestamp of trade ^成交时间戳
 }
 
 {//example
@@ -847,7 +823,7 @@ The following message flows can be subscribed without API-SIGNATURE.
     "volume ": "0.03",              //Traded volume in the execution ^本次成交的数量
     "tradeDate": "20180907",        //Date of trade ^成交日期
     "tradeTime": "10:08:06",        //Time of trade ^成交时间
-    "tradeTimestamp": "1420674445"  //Timestamp of trade ^成交时间戳
+    "tradeTimestamp": "1420674445123"  //Timestamp of trade ^成交时间戳
 }
 ```
 
@@ -977,4 +953,5 @@ Version <br />版本 |Revision Date <br />修订日期|Change Log <br />修订�
 4.0|2018/10/9|Optimize API, merge into a bilingual version. ^优化接口，合并成双语版本。
 4.1|2018/10/15|Improve English content. ^改进英文内容。
 4.2|2018/11/8|Add an authentication method "HMAC"; Add descriptions for the preview environment; Add an API to query API Release Number. ^增加“ HMAC ”授权方式；增加关于预览环境的描述；增加查询 API 发行号的 API。
+4.3|2019/1/21|Improve timestamp accuracy; Optimize authentication process. ^改进时间戳精度；优化授权过程。
 ---
