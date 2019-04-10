@@ -7,7 +7,7 @@ title: HashKey Pro Trading and Market Data API Specification ^HashKey Pro 交易
 search: true
 
 toc_footers:
-    - Release Number 4.3.0
+    - Release Number 4.3.1
     - <a href='https://hashkeypro.github.io/api'>API home page</a>
     - <a href='https://pro.hashkey.com'>Hashkey Pro Official Site</a>
 ---
@@ -229,7 +229,7 @@ Query the server time in UTC (Coordinated Universal Time).
  
 ```javascript
 {//example
-    "version": "4.3.0"    //API release number ^API 发行号
+    "version": "4.3.1"    //API release number ^API 发行号
 }
 ```
 
@@ -324,7 +324,8 @@ Note: If there are m order IDs in 1 batch cancel order, the number of orders cou
     "limitPrice": "1.23",                  //Price of limit order (can not be empty and needs to be greater than 0.) ^限价订单的价格（不能为空且需大于0）
     "volumeTotalOriginal": "4.56",         //Original total volume (can not be empty and needs to be greater than 0.) ^初始的总数量（不能为空且需大于0）
     "timeCondition": "GTC",                //Time in force conditions, only GTC (Good Till Cancel) is supported now. GFS (Good For Session), IOC (Immediate Or Cancel), etc. will be supported in the future. ^有效期类型，目前支持 GTC（撤销前一直有效），未来计划支持 GFS（当前Session有效）、 IOC（立即成交否则撤销）等。
-    "orderLocalID": "15362989689714502"    //order local ID assigned by the user rather than the exchange. It should be incremental and unique. ^由用户（而非交易所）分配的本地订单ID，建议确保其增长性及唯一性。
+    "orderLocalID": "15362989689714502",   //order local ID assigned by the user rather than the exchange. It should be incremental and unique. ^由用户（而非交易所）分配的本地订单ID，建议确保其增长性及唯一性。
+    "makerFlag": "0"                       //maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。
 }
 ```
 
@@ -469,6 +470,7 @@ The interface can cancel up to a maximum of <font color="#dd0000" face="black">1
     "insertTimestamp": "1536298968123",       //Timestamp of insertion ^下单时间戳
     "cancelDate": "20180907",              //Date of cancellation ^撤单日期
     "cancelTime": "05:42:57",              //Time of cancellation ^撤单时间
+    "makerFlag": "0"                       //maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。
 }
 ```
 
@@ -517,6 +519,7 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
     "insertTimestamp": "1536298968123",      //Timestamp of insertion ^下单时间戳
     "cancelDate": "20180907",             //Date of cancellation ^撤单日期
     "cancelTime": "05:42:57",             //Time of cancellation ^撤单时间
+    "makerFlag": "0"                       //maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。
 }
 ```
 
@@ -716,6 +719,7 @@ After subscribing to a private flow, the subscriber will receive the following t
     "insertTimestamp": "1536298968123",       //Timestamp of insertion ^下单时间戳
     "cancelDate": "20180907",              //Date of cancellation ^撤单日期
     "cancelTime": "05:42:57",              //Time of cancellation ^撤单时间
+    "makerFlag": "0"                       //maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。
 }
 ```
 
@@ -940,6 +944,9 @@ respCode <br /> 应答码 |             respMsg <br />应答消息     |      No
 2020|Order price should be less than 10000000     |--- <br /> 订单价格应小于10000000
 2021|Order price type error                       |Order price type error. Only limit order (orderPriceType: limit) is supported now. <br /> 订单价格类型错误。目前支持限价订单（ orderPriceType:  limit ）。
 2022|TimeCondition error                          |TimeCondition error. Only GTC (Good Till Cancel) is supported now. <br /> 订单有效期类型错误，目前支持 GTC（撤销前一直有效）。
+2023|This order can not be a maker                |--- <br /> 该订单不会成为 maker
+2024|This order can not be a taker                |--- <br /> 该订单不会成为 taker
+2025|Invalid makerFlag                            |--- <br /> 不合法的 makerFlag
 
 For any questions related to the above, please sending an email to support@pro.hashkey.com.
 
