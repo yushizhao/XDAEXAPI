@@ -944,8 +944,8 @@ respCode <br /> 应答码 |             respMsg <br />应答消息     |      No
 2020|Order price should be less than 10000000     |--- <br /> 订单价格应小于10000000
 2021|Order price type error                       |Order price type error. Only limit order (orderPriceType: limit) is supported now. <br /> 订单价格类型错误。目前支持限价订单（ orderPriceType:  limit ）。
 2022|TimeCondition error                          |TimeCondition error. Only GTC (Good Till Cancel) is supported now. <br /> 订单有效期类型错误，目前支持 GTC（撤销前一直有效）。
-2023|This order can not be a maker                |--- <br /> 该订单不会成为 maker
-2024|This order can not be a taker                |--- <br /> 该订单不会成为 taker
+2023|This maker-only order is rejected because it would have been executed as a taker.             |--- <br /> 该 maker-only 订单被拒单了，因为它本能作为 taker 被执行。
+2024|This taker-only order is rejected because it would have been executed as a maker.              |--- <br /> 该 taker-only 订单被拒单了，因为它本能作为 maker 被执行。
 2025|Invalid makerFlag                            |--- <br /> 不合法的 makerFlag
 
 For any questions related to the above, please sending an email to support@pro.hashkey.com.
