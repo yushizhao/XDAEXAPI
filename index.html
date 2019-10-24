@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>XDAEX Trading and Market Data API Specification ^XDAEX 交易及行情API规范</title>
+    <title>HashKey Pro Trading and Market Data API Specification ^HashKey Pro 交易及行情API规范</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -310,14 +310,6 @@
           </li>
           <li>
             <a href="#4-sample-code" class="toc-h1 toc-link" data-title="4. Sample Code ^示例代码">4. Sample Code ^示例代码</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#4-1-rest-interface-rest" class="toc-h2 toc-link" data-title="4.1. REST Interface ^REST 接口">4.1. REST Interface ^REST 接口</a>
-                  </li>
-                  <li>
-                    <a href="#4-2-websocket-subscription-emsp-websocket" class="toc-h2 toc-link" data-title="4.2. WebSocket Subscription ^WebSocket 订阅">4.2. WebSocket Subscription<br> ^WebSocket 订阅</a>
-                  </li>
-              </ul>
           </li>
           <li>
             <a href="#5-request-response-code-table-emsp" class="toc-h1 toc-link" data-title="5. Request-Response Code Table ^请求应答编码对照表">5. Request-Response Code Table<br> ^请求应答编码对照表</a>
@@ -332,7 +324,9 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li>Release Number 4.2.0</li>
+            <li>Release Number 4.3.1</li>
+            <li><a href='https://hashkeypro.github.io/api'>API home page</a></li>
+            <li><a href='https://pro.hashkey.com'>Hashkey Pro Official Site</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -375,9 +369,9 @@
 <li>若用户的私钥或密钥发生丢失、被盗用等异常情况，可在交易所网页的“用户中心-- API 接口”中删除对应的 API-KEY ，再申请新的 API-KEY 。</li>
 </ul>
 
-<p>For security reasons, an API-KEY can be blacklisted by the administrator. If the API-KEY is blacklisted, the API user can send an email to support@xdaex.com and apply to be removed from the blacklist.</p>
+<p>For security reasons, an API-KEY can be blacklisted by the administrator. If the API-KEY is blacklisted, the API user can send an email to support@pro.hashkey.com and apply to be removed from the blacklist.</p>
 
-<p>由于安全原因，某 API-KEY 可能被管理员加入黑名单。若 API-KEY 处于黑名单中， API 用户可发送邮件至 support@xdaex.com ，申请从黑名单中移除。</p>
+<p>由于安全原因，某 API-KEY 可能被管理员加入黑名单。若 API-KEY 处于黑名单中， API 用户可发送邮件至 support@pro.hashkey.com ，申请从黑名单中移除。</p>
 <h3 id='1-1-2-query-info-and-subscribe-to-websocket-flow-websocket'>1.1.2. Query Info and Subscribe to WebSocket Flow ^查询信息和订阅 WebSocket 流</h3>
 <p>Before trading, it is recommended to call the following REST interface to query the server time, instruments, asset balances and other related information to ensure that the user&#39;s trading program is in the correct status:</p>
 
@@ -443,12 +437,12 @@
 <li>Test Environment: In order to protect users&#39; assets, it is highly recommended that API users complete the necessary system tests in the test environment before accessing the production environment for trading. 
 
 <ul>
-<li>Domain name: api-test.xdaex.com</li>
+<li>Domain name: <a href="api-test.pro.hashkey.com">api-test.pro.hashkey.com</a></li>
 </ul></li>
 <li>Preview Environment: To help users prepare for API updates, conduct compatible tests for instance, all API updates take effect in the preview environment first. Then, after a preannounced period of time, the test environment and the production environment will be updated.
 
 <ul>
-<li>Domain name: api-preview.xdaex.com</li>
+<li>Domain name: <a href="api-preview.pro.hashkey.com">api-preview.pro.hashkey.com</a></li>
 </ul></li>
 </ul>
 
@@ -458,36 +452,36 @@
 <li>测试环境：为了保护用户资产，建议 API 用户在测试环境中完成必要的系统测试后，再接入生产系统进行交易。
 
 <ul>
-<li>域名：api-test.xdaex.com</li>
+<li>域名：<a href="api-test.pro.hashkey.com">api-test.pro.hashkey.com</a></li>
 </ul></li>
 <li>预览环境：每次 API 功能迭代时会先对预览环境进行升级，以便于用户尽早开展兼容性测试等升级准备工作，并将在约定的一段时间后同步更新测试环境和生产环境。
 
 <ul>
-<li>域名：api-preview.xdaex.com</li>
+<li>域名：<a href="api-preview.pro.hashkey.com">api-preview.pro.hashkey.com</a></li>
 </ul></li>
 </ul>
 
-<p>API users can send an email to support@xdaex.com to apply for accessing the test environment and the preview environment.</p>
+<p>API users can send an email to support@pro.hashkey.com to apply for accessing the test environment and the preview environment.</p>
 
-<p>API 用户可以发送邮件至 support@xdaex.com ，申请使用测试环境和预览环境。</p>
+<p>API 用户可以发送邮件至 support@pro.hashkey.com ，申请使用测试环境和预览环境。</p>
 <h1 id='2-rest-interface-description-emsp-rest'>2. REST Interface Description<br \>&emsp;^REST接口说明</h1><h2 id='2-1-http-request-url-emsp-http-url'>2.1. HTTP Request URL<br \>&emsp;^HTTP 请求 URL</h2>
-<p>The REST interface requests a URL as: https://xdaex.com/APITrade/v1/account/assets
+<p>The REST interface requests a URL as: https://pro.hashkey.com/APITrade/v1/account/assets
 This request URL contains the following main components:</p>
 
 <ul>
 <li>Protocol: https</li>
-<li>Domain name: xdaex.com (To access the test\preview environment, please replace it with the corresponding domain name.)</li>
+<li>Domain name: pro.hashkey.com (To access the test\preview environment, please replace it with the corresponding domain name.)</li>
 <li>Interface name: APITrade</li>
 <li>Version: v1</li>
 <li>Path: Different functions need to be accessed via different paths. For example: query the user&#39;s asset balance via /account/assets.</li>
 </ul>
 
-<p>REST 接口请求 URL 形如： https://xdaex.com/APITrade/v1/account/assets
+<p>REST 接口请求 URL 形如： https://pro.hashkey.com/APITrade/v1/account/assets
 该 URL 中主要包括以下组成部分：</p>
 
 <ul>
 <li>协议: https</li>
-<li>域名: xdaex.com （如访问测试或预览环境，则需替换成指定的域名）</li>
+<li>域名: pro.hashkey.com （如访问测试或预览环境，则需替换成指定的域名）</li>
 <li>接口名称: APITrade</li>
 <li>版本: v1</li>
 <li>路径: 使用不同功能要访问不同的路径，例如：查询用户资产余额对应的路径是 /account/assets</li>
@@ -539,31 +533,22 @@ This request URL contains the following main components:</p>
 <li>Combine data: data = timestamp + HttpMethod + version + path + jsonBody</li>
 <li>timestamp is the timestamp（UTC）in the HTTP request message header.</li>
 <li>HTTP Method can be GET or POST, all in uppercase.</li>
-<li>version + path, such as: /v1/account/assets
+<li>version + path, such as: /v1/info/version
 
 <ul>
 <li>The jsonBody is in JSON format. If the HTTP Method is GET, the jsonBody must be empty.</li>
-<li>GET request example: data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>GET request example: data = &quot;1548828786000GET/v1/info/version&quot;</li>
 <li>POST request example: data = &quot;1539324192349POST/v1/order/cancelByLocalID{&quot;orderLocalID&quot;:&quot;1234567891234&quot;}&quot;</li>
 </ul></li>
-<li>Use SHA256 algorithm to get the hash of the data, then convert the hash into a hexadecimal string in lowercase: hashedData = SHA256(data) </li>
+<li>Use the private key to sign the hash of the data (Algorithm: ECDSA, Hash Function: Keccak 256, Elliptic Curve: secp256k1): sign (data)</li>
 <li>Example:
 
 <ul>
 <li>Input:</li>
-<li>data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>data = &quot;1548828786000GET/v1/info/version&quot;</li>
+<li>privateKey = &quot;uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo=&quot;</li>
 <li>Output:</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-</ul></li>
-<li>Use the private key to sign the hash of the data (Algorithm: ECC, Elliptic Curve: secp256k1): sign (hashedData)</li>
-<li>Example:
-
-<ul>
-<li>Input:</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-<li>privateKey = &quot;VAoASo72TbEYsasQAD64nHlZVyBglPw13kfvlqM1j5Z=&quot;</li>
-<li>Output:</li>
-<li>signedData = {&quot;r&quot;:&quot;egMRmhmMNL9N94eKxj0xCDgh115u54cWPHNQEKt4nL4=&quot;, &quot;s&quot;:&quot;QlgLvEbzRqIBVEsusI7gbDnVtpqVxHWBQw2CdgBrpUU=&quot;,&quot;v&quot;:27}</li>
+<li>signedData = {&quot;r&quot;:&quot;A+wY1dLtlur/dZsTepZEBWbA8rMoSkwAIeq42CZqATU=&quot;,&quot;s&quot;:&quot;K0Sw5UlgYSzmmMMCBwdHWYiAbEah7dcCgo8H0h6rRMM=&quot;,&quot;v&quot;:28}</li>
 </ul></li>
 </ul></li>
 <li>获得 AUTH-TYPE 为 &quot;PUB-PRIV&quot; 的 API-SIGNATURE 的步骤
@@ -572,31 +557,22 @@ This request URL contains the following main components:</p>
 <li>拼装原文：data = timestamp + HttpMethod + version + path + jsonBody</li>
 <li>timestamp 就是HTTP请求消息头中的时间戳（UTC）</li>
 <li>HTTP Method 可以是 GET 或 POST，全部为大写格式</li>
-<li>version + path， 如：/v1/account/assets</li>
+<li>version + path， 如：/v1/info/version</li>
 <li>jsonBody 采用了 json 格式，如果是 GET 请求，则 jsonBody 为空
 
 <ul>
-<li>GET 请求范例：data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>GET 请求范例：data = &quot;1548828786000GET/v1/info/version&quot;</li>
 <li>POST 请求范例：data = &quot;1539324192349POST/v1/order/cancelByLocalID{&quot;orderLocalID&quot;:&quot;1234567891234&quot;}&quot;</li>
 </ul></li>
-<li>用 SHA256 算法对原文计算 hash ，得到小写16进制字符串： hashedData = SHA256(data)</li>
+<li>用私钥对 data 的哈希摘要 签名（算法：ECDSA，哈希函数：Keccak 256, 椭圆曲线：secp256k1 ）: sign(data)</li>
 <li>范例：
 
 <ul>
 <li>输入：</li>
-<li>data = &quot;1234567891234GET/v1/account/assets&quot;</li>
+<li>hashedData = &quot;1548828786000GET/v1/info/version&quot;</li>
+<li>privateKey = &quot;uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo=&quot;</li>
 <li>输出：</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-</ul></li>
-<li>用私钥对 hash 结果签名（算法：ECC，椭圆曲线：secp256k1 ）: sign(hashedData)</li>
-<li>范例：
-
-<ul>
-<li>输入：</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-<li>privateKey = &quot;VAoASo72TbEYsasQAD64nHlZVyBglPw13kfvlqM1j5Z=&quot;</li>
-<li>输出：</li>
-<li>signedData = {&quot;r&quot;:&quot;egMRmhmMNL9N94eKxj0xCDgh115u54cWPHNQEKt4nL4=&quot;, &quot;s&quot;:&quot;QlgLvEbzRqIBVEsusI7gbDnVtpqVxHWBQw2CdgBrpUU=&quot;,&quot;v&quot;:27}</li>
+<li>signedData = {&quot;r&quot;:&quot;A+wY1dLtlur/dZsTepZEBWbA8rMoSkwAIeq42CZqATU=&quot;,&quot;s&quot;:&quot;K0Sw5UlgYSzmmMMCBwdHWYiAbEah7dcCgo8H0h6rRMM=&quot;,&quot;v&quot;:28}</li>
 </ul></li>
 </ul></li>
 <li>Steps to get an API-SIGNATURE with AUTH-TYPE &quot;HMAC&quot;
@@ -605,31 +581,22 @@ This request URL contains the following main components:</p>
 <li>Combine data: data = timestamp + HttpMethod + version + path + jsonBody</li>
 <li>timestamp is the timestamp (UTC) in the HTTP request message header.</li>
 <li>HTTP Method can be GET or POST, all in uppercase.</li>
-<li>version + path, such as: /v1/account/assets
+<li>version + path, such as: /v1/info/version
 
 <ul>
 <li>The jsonBody is in JSON format. If the HTTP Method is GET, the jsonBody must be empty.</li>
-<li>GET request example: data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>GET request example: data = &quot;1548828786000GET/v1/info/version&quot;</li>
 <li>POST request example: data = &quot;1539324192349POST/v1/order/cancelByLocalID{&quot;orderLocalID&quot;:&quot;1234567891234&quot;}&quot;</li>
 </ul></li>
-<li>Use SHA256 algorithm to get the hash of the data, then convert the hash into a hexadecimal string in lowercase: hashedData = SHA256(data) </li>
+<li>Derive the message authentication code from the hash and the secret key (Algorithm: SHA256HMAC): SHA256HMAC (secretKey, data)</li>
 <li>Example:
 
 <ul>
 <li>Input:</li>
-<li>data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>data = &quot;1548828786000GET/v1/info/version&quot;</li>
+<li>secretKey = &quot;vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw=&quot;</li>
 <li>Output:</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-</ul></li>
-<li>Derive the message authentication code from the hash and the secret key (Algorithm: SHA256HMAC): SHA256HMAC (secretKey, hashedData)</li>
-<li>Example:
-
-<ul>
-<li>Input:</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-<li>secretKey = &quot;0adabfc46fa8062d92a4e8313ffce285efbb70dfcdb1e3d0c415dd17759a8303&quot;</li>
-<li>Output:</li>
-<li>signedData = &quot;Gkg0nwKpeQNw7h3hSiNGH1jem2y9M+vILdSDnG3ucSQ=&quot;</li>
+<li>signedData = &quot;ApWKKdIA50Jml757tWkaSs9ZeTObwLMPh1cAaVBZgD0=&quot;</li>
 </ul></li>
 </ul></li>
 <li>获得对应 AUTH-TYPE 为 &quot;HMAC&quot; 的 API-SIGNATURE 的步骤
@@ -638,31 +605,22 @@ This request URL contains the following main components:</p>
 <li>拼装原文：data = timestamp + HttpMethod + version + path + jsonBody</li>
 <li>timestamp 就是HTTP请求消息头中的时间戳（UTC）</li>
 <li>HTTP Method 可以是 GET 或 POST，全部为大写格式</li>
-<li>version + path， 如：/v1/account/assets</li>
+<li>version + path， 如：/v1/info/version</li>
 <li>jsonBody 采用了 json 格式，如果是 GET 请求，则 jsonBody 为空
 
 <ul>
-<li>GET 请求范例：data = &quot;1539324192349GET/v1/account/assets&quot;</li>
+<li>GET 请求范例：data = &quot;1548828786000GET/v1/info/version&quot;</li>
 <li>POST 请求范例：data = &quot;1539324192349POST/v1/order/cancelByLocalID{&quot;orderLocalID&quot;:&quot;1234567891234&quot;}&quot;</li>
 </ul></li>
-<li>用 SHA256 算法对原文计算 hash ，得到小写16进制字符串： hashedData = SHA256(data)</li>
+<li>用密钥结合原文的 hash 计算出消息验证码（算法： SHA256HMAC ）: SHA256HMAC(secretKey, data)</li>
 <li>范例：
 
 <ul>
 <li>输入：</li>
-<li>data = &quot;1234567891234GET/v1/account/assets&quot;</li>
+<li>data = &quot;1548828786000GET/v1/info/version&quot;</li>
+<li>secretKey = &quot;vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw=&quot;</li>
 <li>输出：</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-</ul></li>
-<li>用密钥结合原文的 hash 计算出消息验证码（算法： SHA256HMAC ）: SHA256HMAC(secretKey, hashedData)</li>
-<li>范例：
-
-<ul>
-<li>输入：</li>
-<li>hashedData = &quot;5ec9dc37816d865230b0e93bfd845a3c5fdef7dddf675b53e91d9259b6fa2a23&quot;</li>
-<li>secretKey = &quot;0adabfc46fa8062d92a4e8313ffce285efbb70dfcdb1e3d0c415dd17759a8303&quot;</li>
-<li>输出：</li>
-<li>signedData = &quot;Gkg0nwKpeQNw7h3hSiNGH1jem2y9M+vILdSDnG3ucSQ=&quot;</li>
+<li>signedData = &quot;ApWKKdIA50Jml757tWkaSs9ZeTObwLMPh1cAaVBZgD0=&quot;</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -688,7 +646,7 @@ This request URL contains the following main components:</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"4.1.2"</span>    <span class="c1">//API release number ^API 发行号</span>
+    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"4.3.1"</span>    <span class="c1">//API release number ^API 发行号</span>
 <span class="p">}</span>
 </code></pre>
 <p>Query the API release number that applies to the current environment.</p>
@@ -779,7 +737,8 @@ This request URL contains the following main components:</p>
     <span class="s2">"limitPrice"</span><span class="p">:</span> <span class="s2">"1.23"</span><span class="p">,</span>                  <span class="c1">//Price of limit order (can not be empty and needs to be greater than 0.) ^限价订单的价格（不能为空且需大于0）</span>
     <span class="s2">"volumeTotalOriginal"</span><span class="p">:</span> <span class="s2">"4.56"</span><span class="p">,</span>         <span class="c1">//Original total volume (can not be empty and needs to be greater than 0.) ^初始的总数量（不能为空且需大于0）</span>
     <span class="s2">"timeCondition"</span><span class="p">:</span> <span class="s2">"GTC"</span><span class="p">,</span>                <span class="c1">//Time in force conditions, only GTC (Good Till Cancel) is supported now. GFS (Good For Session), IOC (Immediate Or Cancel), etc. will be supported in the future. ^有效期类型，目前支持 GTC（撤销前一直有效），未来计划支持 GFS（当前Session有效）、 IOC（立即成交否则撤销）等。</span>
-    <span class="s2">"orderLocalID"</span><span class="p">:</span> <span class="s2">"15362989689714502"</span>    <span class="c1">//order local ID assigned by the user rather than the exchange. It should be incremental and unique. ^由用户（而非交易所）分配的本地订单ID，建议确保其增长性及唯一性。</span>
+    <span class="s2">"orderLocalID"</span><span class="p">:</span> <span class="s2">"15362989689714502"</span><span class="p">,</span>   <span class="c1">//order local ID assigned by the user rather than the exchange. It should be incremental and unique. ^由用户（而非交易所）分配的本地订单ID，建议确保其增长性及唯一性。</span>
+    <span class="s2">"makerFlag"</span><span class="p">:</span> <span class="s2">"0"</span>                       <span class="c1">//maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。</span>
 <span class="p">}</span>
 </code></pre>
 <blockquote>
@@ -919,9 +878,10 @@ This request URL contains the following main components:</p>
     <span class="s2">"actionTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>    <span class="c1">//Timestamp of the last change to the order status^ 状态变化时间戳</span>
     <span class="s2">"insertDate"</span><span class="p">:</span> <span class="s2">"20180829"</span><span class="p">,</span>              <span class="c1">//Date of insertion ^下单日期</span>
     <span class="s2">"insertTime"</span><span class="p">:</span> <span class="s2">"07:45:10"</span><span class="p">,</span>              <span class="c1">//Time of insertion ^下单时间</span>
-    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
+    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>              <span class="c1">//Time of cancellation ^撤单时间</span>
+    <span class="s2">"makerFlag"</span><span class="p">:</span> <span class="s2">"0"</span>                       <span class="c1">//maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。</span>
 <span class="p">}</span>
 </code></pre>
 <p>Similar to cancelling orders, there are two ways to query orders: either by orderLocalID or by orderSysID.</p>
@@ -944,8 +904,8 @@ This request URL contains the following main components:</p>
 <p>Request:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span><span class="p">,</span>    <span class="c1">//Start timestamp of query (optional) ^查询起始时间戳（非必填）</span>
-    <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420674567"</span><span class="p">,</span>      <span class="c1">//End timestamp of query (optional) ^查询结束时间戳（非必填）</span>
+    <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420675555123"</span><span class="p">,</span>    <span class="c1">//Order timestamp starts with recent orders (optional) ^从较近的订单时间戳开始查询（非必填）</span>
+    <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span><span class="p">,</span>      <span class="c1">//Order timestamp ends with older orders (optional) ^到较早的订单时间戳结束查询（非必填）</span>
     <span class="s2">"orderStatus"</span><span class="p">:</span> <span class="s2">"active"</span><span class="p">,</span>           <span class="c1">//Order status (optional) {(active-order still in order book, corresponding to status 1, 3), (closed-order not in order book, corresponding to status 0, 2, 4, 5, 6), (not specified or an empty string - all status)} ^订单状态（非必填）{(active-订单在订单簿中，对应状态1、3), (closed-订单不在订单簿中，对应状态0、2、4、5、6), (未指定本项或本项为空字符串-对应所有状态)｝。</span>
     <span class="s2">"instrumentID"</span><span class="p">:</span> <span class="s2">"ETH-BTC"</span><span class="p">,</span>         <span class="c1">//Instrument ID (optional) ^合约ID（非必填）</span>
     <span class="s2">"orderSysID"</span><span class="p">:</span> <span class="s2">"1412943752000004"</span>   <span class="c1">//Order system ID (optional) ^系统订单ID（非必填）</span>
@@ -969,15 +929,20 @@ This request URL contains the following main components:</p>
     <span class="s2">"actionTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>    <span class="c1">//Timestamp of the last change to the order status^ 状态变化时间戳</span>
     <span class="s2">"insertDate"</span><span class="p">:</span> <span class="s2">"20180829"</span><span class="p">,</span>             <span class="c1">//Date of insertion ^下单日期</span>
     <span class="s2">"insertTime"</span><span class="p">:</span> <span class="s2">"07:45:10"</span><span class="p">,</span>             <span class="c1">//Time of insertion ^下单时间</span>
-    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968"</span><span class="p">,</span>      <span class="c1">//Timestamp of insertion ^下单时间戳</span>
+    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>      <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>             <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>             <span class="c1">//Time of cancellation ^撤单时间</span>
+    <span class="s2">"makerFlag"</span><span class="p">:</span> <span class="s2">"0"</span>                       <span class="c1">//maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。</span>
 <span class="p">}</span>
 </code></pre>
 <ul>
-<li><p>Query by order system ID ( orderSysID ): If orderSysID is not specified, it will query the maximum number of <font color="#dd0000" face="black">100</font> orders, sorted by time of insertion <b>(starting from the most recent order to the oldest order)</b>.
+<li>Query by order system ID ( orderSysID ): </li>
+<li>If orderSysID is not specified, it will query the maximum number of <font color="#dd0000" face="black">100</font> orders, sorted by time of insertion <b>(starting from the most recent order to the oldest order)</b>.</li>
+<li>If users query with timestamps, the startTimestamp should be the newer timestamp and endTimestamp timestamp should be the older timestamp. In other words, the startTimestamp should be larger than the endTimestamp.
 <br />
-根据系统订单ID（ orderSysID ）查询订单：如果不指定 orderSysID ，最多返回<font color="#dd0000" face = "black">100</font>条订单，按照下单时间排序<b>（最近的订单排在最前面）</b>。</p>
+根据系统订单ID（ orderSysID ）查询订单：</li>
+<li>如果不指定 orderSysID ，最多返回<font color="#dd0000" face = "black">100</font>条订单，按照下单时间排序<b>（最近的订单排在最前面）</b>。</li>
+<li><p>如果用户用时间戳进行查询, startTimestamp 应为较新的时间戳, endTimestamp 应为较旧的时间戳. 换句话说, startTimestamp 应该设的比 endTimestamp 大.</p>
 
 <ul>
 <li>Method: POST</li>
@@ -990,8 +955,8 @@ This request URL contains the following main components:</p>
 <p>Request:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span><span class="c1">//example</span>
-    <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span><span class="p">,</span>  <span class="c1">//Start timestamp of query (optional) ^查询起始时间戳（非必填）</span>
-    <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span><span class="p">,</span>    <span class="c1">//End timestamp of query (optional) ^查询结束时间戳（非必填）</span>
+    <span class="s2">"startTimestamp"</span><span class="p">:</span> <span class="s2">"1420675555123"</span><span class="p">,</span>    <span class="c1">//Trade timestamp starts with recent trades (optional) ^从较近的成交时间戳开始查询（非必填）</span>
+    <span class="s2">"endTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span><span class="p">,</span>      <span class="c1">//Trade timestamp ends with older trades (optional) ^到较早的成交时间戳结束查询（非必填）</span>
     <span class="s2">"instrumentID"</span><span class="p">:</span> <span class="s2">"ETH-BTC"</span>        <span class="c1">//Instrument ID (optional) ^合约ID（非必填）</span>
 <span class="p">}</span>
 </code></pre>
@@ -1011,14 +976,14 @@ This request URL contains the following main components:</p>
         <span class="s2">"fee"</span><span class="p">:</span> <span class="s2">"0.1"</span><span class="p">,</span>                           <span class="c1">//Fee ^手续费</span>
         <span class="s2">"tradeDate"</span><span class="p">:</span> <span class="s2">"20180829"</span><span class="p">,</span>                <span class="c1">//Date of trade ^成交日期</span>
         <span class="s2">"tradeTime"</span><span class="p">:</span> <span class="s2">"07:45:10"</span><span class="p">,</span>                <span class="c1">//Time of trade ^成交时间</span>
-        <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span>          <span class="c1">//Timestamp of trade ^成交时间戳</span>
+        <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span>          <span class="c1">//Timestamp of trade ^成交时间戳</span>
     <span class="p">},</span>
     <span class="p">...</span>
 <span class="p">]</span>
 </code></pre>
-<p>Query the maximum number of <font color="#dd0000" face="black">100</font> trades which is sorted by traded time <b>(starting from most recent trade to the oldest trade)</b>.</p>
+<p>Query the maximum number of <font color="#dd0000" face="black">100</font> trades which is sorted by traded time <b>(starting from most recent trade to the oldest trade)</b>. If users query with timestamps, the startTimestamp should be the newer timestamp and endTimestamp timestamp should be the older timestamp. In other words, the startTimestamp should be larger than the endTimestamp.</p>
 
-<p>最多查询 <font color="#dd0000" face="black">100</font> 条成交，按照成交时间排序<b>（最近的成交排在最前面）</b>。</p>
+<p>最多查询 <font color="#dd0000" face="black">100</font> 条成交，按照成交时间排序<b>（最近的成交排在最前面）</b>。 如果用户用时间戳进行查询, startTimestamp 应为较新的时间戳, endTimestamp 应为较旧的时间戳。换句话说, startTimestamp 应该设的比 endTimestamp 大。</p>
 
 <ul>
 <li>Method: POST</li>
@@ -1056,25 +1021,25 @@ This request URL contains the following main components:</p>
 
 <p>HTML5 定义了 WebSocket 协议，允许服务端向客户端推送数据，能更好的节省服务器资源和带宽，并且能够实时地进行通讯。在 WebSocket API 中，客户端和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。</p>
 <h2 id='3-1-websocket-request-url-emsp-websocket-url'>3.1. WebSocket Request URL<br \>&emsp;^WebSocket 请求 URL</h2>
-<p>The WebSocket interface request URL is: wss://xdaex.com/APITradeWS/v1/messages.</p>
+<p>The WebSocket interface request URL is: wss://pro.hashkey.com/APITradeWS/v1/messages.</p>
 
 <p>This request URL contains the following main components:</p>
 
 <ul>
 <li>Protocol: wss</li>
-<li>Domain name: xdaex.com (To access the test\preview environment, please replace it with the corresponding domain name.)</li>
+<li>Domain name: pro.hashkey.com (To access the test\preview environment, please replace it with the corresponding domain name.)</li>
 <li>Interface name: APITradeWS</li>
 <li>Version: v1</li>
 <li>Path: /messages</li>
 </ul>
 
-<p>WebSocket 接口请求 URL 为: wss://xdaex.com/APITradeWS/v1/messages 。</p>
+<p>WebSocket 接口请求 URL 为: wss://pro.hashkey.com/APITradeWS/v1/messages 。</p>
 
 <p>URL 中主要包括以下组成部分：</p>
 
 <ul>
 <li>协议: wss</li>
-<li>域名: xdaex.com （如访问测试或预览环境，则需替换成指定的域名）</li>
+<li>域名: pro.hashkey.com （如访问测试或预览环境，则需替换成指定的域名）</li>
 <li>接口名称: APITradeWS</li>
 <li>版本: v1</li>
 <li>路径: /messages</li>
@@ -1095,12 +1060,12 @@ This request URL contains the following main components:</p>
 <p>API 接入用户可通过订阅方式获取由交易所推送的私有消息流。提交私有流订阅请求时需要通过 API-KEY 进行认证。</p>
 
 <ul>
-<li><p>Use the string &quot;WSS/APITradeWS/v1/messages&quot; directly (<font color="#dd0000" face="black">no need to hash the string</font>) to generate a digital signature or a message authentication code. </p></li>
-<li><p>直接使用字串&quot;WSS/APITradeWS/v1/messages&quot;（<font color="#dd0000" face ="black">不需要对它计算hash </font>）生成数字签名或消息验证码。</p></li>
+<li><p>Use the string &quot;WSS/APITradeWS/v1/messages&quot; to generate a digital signature or a message authentication code. </p></li>
+<li><p>使用字串 &quot;WSS/APITradeWS/v1/messages&quot; 生成数字签名或消息验证码。</p></li>
 <li><p>Steps to get an API-SIGNATURE with AUTH-TYPE &quot;PUB-PRIV&quot;</p>
 
 <ul>
-<li>Use the private key to sign the string &quot;WSS/APITradeWS/v1/messages&quot; (Algorithm: ECC, Elliptic Curve: secp256k1): sign (&quot;WSS/APITradeWS/v1/messages&quot;)</li>
+<li>Use the private key to sign the string &quot;WSS/APITradeWS/v1/messages&quot; (Algorithm: ECDSA, Hash function: Keccak 256, Elliptic Curve: secp256k1): sign (&quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <li>Example:
 
 <ul>
@@ -1114,7 +1079,7 @@ This request URL contains the following main components:</p>
 <li><p>获得 AUTH-TYPE 为 &quot;PUB-PRIV&quot; 的 API-SIGNATURE 的步骤</p>
 
 <ul>
-<li>用私钥对字串 &quot;WSS/APITradeWS/v1/messages&quot; 签名（算法： ECC ，椭圆曲线： secp256k1 ）: sign(&quot;WSS/APITradeWS/v1/messages&quot;)</li>
+<li>用私钥对字串 &quot;WSS/APITradeWS/v1/messages&quot; 签名（算法： ECDSA， 哈希函数： Keccak 256, 椭圆曲线： secp256k1）: sign(&quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <li>范例：
 
 <ul>
@@ -1179,9 +1144,10 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
     <span class="s2">"actionTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>    <span class="c1">//Timestamp of the last change to the order status^ 状态变化时间戳</span>
     <span class="s2">"insertDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of insertion ^下单日期</span>
     <span class="s2">"insertTime"</span><span class="p">:</span> <span class="s2">"05:42:38"</span><span class="p">,</span>              <span class="c1">//Time of insertion ^下单时间</span>
-    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
+    <span class="s2">"insertTimestamp"</span><span class="p">:</span> <span class="s2">"1536298968123"</span><span class="p">,</span>       <span class="c1">//Timestamp of insertion ^下单时间戳</span>
     <span class="s2">"cancelDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>              <span class="c1">//Date of cancellation ^撤单日期</span>
     <span class="s2">"cancelTime"</span><span class="p">:</span> <span class="s2">"05:42:57"</span><span class="p">,</span>              <span class="c1">//Time of cancellation ^撤单时间</span>
+    <span class="s2">"makerFlag"</span><span class="p">:</span> <span class="s2">"0"</span>                       <span class="c1">//maker flag (optional): "0"(default)/"1"/"2". If "0", this is a normal order; If "1", this is a maker-only order. Which means it will be rejected if it would have been executed as a taker; If "2", this order is a taker-only order. Which means it will be rejected or partially cancelled if it would have been executed as a maker. ^可选参数 maker flag: "0"(默认)/"1"/"2"。如果为"0",则此单是一个通常订单； 如果为"1"，则此单为 maker-only 订单。即，当此单将作为 taker 被执行时，此单会被拒单； 如果为"2"，则此单为 taker-only 订单。即，当此单将作为 maker 被执行时，此单会被拒单或部分撤单。</span>
 <span class="p">}</span>
 </code></pre>
 <p>When the order status changes (e.g. success of insertion, success of cancellation, execution, etc.), the following message will be published:</p>
@@ -1263,7 +1229,7 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
     <span class="s2">"volume "</span><span class="p">:</span> <span class="s2">"0.03"</span><span class="p">,</span>              <span class="c1">//Traded volume in the execution ^本次成交的数量</span>
     <span class="s2">"tradeDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>        <span class="c1">//Date of trade ^成交日期</span>
     <span class="s2">"tradeTime"</span><span class="p">:</span> <span class="s2">"10:08:06"</span><span class="p">,</span>        <span class="c1">//Time of trade ^成交时间</span>
-    <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span>  <span class="c1">//Timestamp of trade ^成交时间戳</span>
+    <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span>  <span class="c1">//Timestamp of trade ^成交时间戳</span>
 <span class="p">}</span>
 
 <span class="p">{</span><span class="c1">//example</span>
@@ -1274,7 +1240,7 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
     <span class="s2">"volume "</span><span class="p">:</span> <span class="s2">"0.03"</span><span class="p">,</span>              <span class="c1">//Traded volume in the execution ^本次成交的数量</span>
     <span class="s2">"tradeDate"</span><span class="p">:</span> <span class="s2">"20180907"</span><span class="p">,</span>        <span class="c1">//Date of trade ^成交日期</span>
     <span class="s2">"tradeTime"</span><span class="p">:</span> <span class="s2">"10:08:06"</span><span class="p">,</span>        <span class="c1">//Time of trade ^成交时间</span>
-    <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445"</span>  <span class="c1">//Timestamp of trade ^成交时间戳</span>
+    <span class="s2">"tradeTimestamp"</span><span class="p">:</span> <span class="s2">"1420674445123"</span>  <span class="c1">//Timestamp of trade ^成交时间戳</span>
 <span class="p">}</span>
 </code></pre>
 <p>If you&#39;ve subscribed to the ticker message flow, the following ticker message will be published when orders are executed:</p>
@@ -1351,37 +1317,13 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <p>In order to implement the heartbeat mechanism, the WebSocket subscriber should sends a &#39;ping&#39; message to the server once per <b>15</b> seconds and then the server replies to the subscriber with a &#39;pong&#39; message.</p>
 
 <p>为了实现心跳机制，WebSocket 订阅方每<b>15</b>秒向服务器发送一次&quot;ping&quot; 消息，然后服务器会向订阅方回复一个 &quot;pong&quot; 消息。</p>
-<h1 id='4-sample-code'>4. Sample Code ^示例代码</h1><h2 id='4-1-rest-interface-rest'>4.1. REST Interface ^REST 接口</h2>
+<h1 id='4-sample-code'>4. Sample Code ^示例代码</h1>
 <ul>
-<li>Java
-
-<ul>
-<li> <a href="https://github.com/XDAEX/API/raw/master/java/xdaex-trading-sdk-1.0.jar">Java SDK</a></li>
-<li> <a href="https://github.com/XDAEX/API/wiki/REST_sample_java">Java Sample</a></li>
-</ul></li>
-<li>Python
-
-<ul>
-<li> <a href="https://github.com/XDAEX/API/wiki/REST_sample_python">Python Sample</a></li>
-</ul></li>
-<li>Golang
-
-<ul>
-<li> <a href="https://github.com/XDAEX/API/tree/master/golang/eccutils">Golang Package</a></li>
-<li> <a href="https://github.com/XDAEX/API/wiki/REST_sample_golang">Golang Sample</a></li>
-</ul></li>
-<li>C++
-
-<ul>
-<li> <a href="https://github.com/XDAEX/API/raw/master/cpp/eccutils.hpp">C++ header</a></li>
-<li> <a href="https://github.com/XDAEX/API_Docs/wiki/REST_sample_cpp">C++ Sample</a></li>
-</ul></li>
-</ul>
-<h2 id='4-2-websocket-subscription-emsp-websocket'>4.2. WebSocket Subscription<br \>&emsp;^WebSocket 订阅</h2>
-<ul>
-<li><a href="https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_javascript">JavaScript</a></li>
-<li><a href="https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_golang">Golang</a></li>
-<li><a href="https://github.com/XDAEX/API/wiki/WebSocket_subscription_sample_cpp">C++</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/golang">Golang</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/python">Python</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/cpp">C++</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/javascript">JavaScript</a></li>
+<li><a href="https://github.com/hashkeypro/api-src/tree/master/java">Java</a></li>
 </ul>
 <h1 id='5-request-response-code-table-emsp'>5. Request-Response Code Table<br \>&emsp;^请求应答编码对照表</h1><h2 id='5-1-success-response'>5.1. Success Response ^成功应答</h2>
 <p>The HTTP response code is 200 for all success responses which may contain other information about the response. Please refer to the details of the specific interface.</p>
@@ -1569,11 +1511,26 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <td>TimeCondition error</td>
 <td>TimeCondition error. Only GTC (Good Till Cancel) is supported now. <br /> 订单有效期类型错误，目前支持 GTC（撤销前一直有效）。</td>
 </tr>
+<tr>
+<td>2023</td>
+<td>This maker-only order is rejected because it would have been executed as a taker.</td>
+<td>--- <br /> 该 maker-only 订单被拒单了，因为它本能作为 taker 被执行。</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>This taker-only order is rejected because it would have been executed as a maker.</td>
+<td>--- <br /> 该 taker-only 订单被拒单了，因为它本能作为 maker 被执行。</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>Invalid makerFlag</td>
+<td>--- <br /> 不合法的 makerFlag</td>
+</tr>
 </tbody></table>
 
-<p>For any questions related to the above, please sending an email to support@xdaex.com.</p>
+<p>For any questions related to the above, please sending an email to support@pro.hashkey.com.</p>
 
-<p>若 API 用户对于以上仍有疑问，请发送邮件至 support@xdaex.com 。</p>
+<p>若 API 用户对于以上仍有疑问，请发送邮件至 support@pro.hashkey.com 。</p>
 
 <hr>
 
@@ -1608,6 +1565,11 @@ SHA256HMAC): SHA256HMAC (secretKey, &quot;WSS/APITradeWS/v1/messages&quot;)</li>
 <td>4.2</td>
 <td>2018/11/8</td>
 <td>Add an authentication method &quot;HMAC&quot;; Add descriptions for the preview environment; Add an API to query API Release Number. ^增加“ HMAC ”授权方式；增加关于预览环境的描述；增加查询 API 发行号的 API。</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>2019/1/21</td>
+<td>Improve timestamp accuracy; Optimize authentication process. ^改进时间戳精度；优化授权过程。</td>
 </tr>
 </tbody></table>
 
