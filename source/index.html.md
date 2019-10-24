@@ -490,8 +490,8 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
     
 ```javascript
 {//example
-    "startTimestamp": "1420675555123",    //Order timestamp starts with recent orders (optional) ^从较近的订单时间戳开始查询（非必填）
-    "endTimestamp": "1420674445123",      //Order timestamp ends with older orders (optional) ^到较早的订单时间戳结束查询（非必填）
+    "startTimestamp": "1420675555123",    //Order timestamp starts with recent orders (optional) ^从较新的订单时间戳开始查询（非必填）
+    "endTimestamp": "1420674445123",      //Order timestamp ends with older orders (optional) ^到较旧的订单时间戳结束查询（非必填）
     "orderStatus": "active",           //Order status (optional) {(active-order still in order book, corresponding to status 1, 3), (closed-order not in order book, corresponding to status 0, 2, 4, 5, 6), (not specified or an empty string - all status)} ^订单状态（非必填）{(active-订单在订单簿中，对应状态1、3), (closed-订单不在订单簿中，对应状态0、2、4、5、6), (未指定本项或本项为空字符串-对应所有状态)｝。
     "instrumentID": "ETH-BTC",         //Instrument ID (optional) ^合约ID（非必填）
     "orderSysID": "1412943752000004"   //Order system ID (optional) ^系统订单ID（非必填）
@@ -523,13 +523,9 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
 }
 ```
 
-* Query by order system ID ( orderSysID ): 
-+ If orderSysID is not specified, it will query the maximum number of <font color="#dd0000" face="black">100</font> orders, sorted by time of insertion <b>(starting from the most recent order to the oldest order)</b>.
-+ If users query with timestamps, the startTimestamp should be the newer timestamp and endTimestamp timestamp should be the older timestamp. In other words, the startTimestamp should be larger than the endTimestamp.
+* Query by order system ID ( orderSysID ): If orderSysID is not specified, it will query the maximum number of <font color="#dd0000" face="black">100</font> orders, sorted by time of insertion <b>(starting from the most recent order to the oldest order)</b>. If users query with timestamps, the startTimestamp should be the newer timestamp and endTimestamp timestamp should be the older timestamp. In other words, the startTimestamp should be larger than the endTimestamp.
 <br />
-根据系统订单ID（ orderSysID ）查询订单：
-+ 如果不指定 orderSysID ，最多返回<font color="#dd0000" face = "black">100</font>条订单，按照下单时间排序<b>（最近的订单排在最前面）</b>。
-+ 如果用户用时间戳进行查询, startTimestamp 应为较新的时间戳, endTimestamp 应为较旧的时间戳. 换句话说, startTimestamp 应该设的比 endTimestamp 大.
+根据系统订单ID（ orderSysID ）查询订单：如果不指定 orderSysID ，最多返回<font color="#dd0000" face = "black">100</font>条订单，按照下单时间排序<b>（最近的订单排在最前面）</b>。如果用户用时间戳进行查询, startTimestamp 应为较新的时间戳, endTimestamp 应为较旧的时间戳. 换句话说, startTimestamp 应该设的比 endTimestamp 大.
 
   - Method: POST
   - Version: v1
@@ -541,8 +537,8 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
   
 ```javascript
 {//example
-    "startTimestamp": "1420675555123",    //Trade timestamp starts with recent trades (optional) ^从较近的成交时间戳开始查询（非必填）
-    "endTimestamp": "1420674445123",      //Trade timestamp ends with older trades (optional) ^到较早的成交时间戳结束查询（非必填）
+    "startTimestamp": "1420675555123",    //Trade timestamp starts with recent trades (optional) ^从较新的成交时间戳开始查询（非必填）
+    "endTimestamp": "1420674445123",      //Trade timestamp ends with older trades (optional) ^到较旧的成交时间戳结束查询（非必填）
     "instrumentID": "ETH-BTC"        //Instrument ID (optional) ^合约ID（非必填）
 }
 ```
