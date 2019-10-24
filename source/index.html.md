@@ -523,9 +523,13 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
 }
 ```
 
-* Query by order system ID ( orderSysID ): If orderSysID is not specified, it will query the maximum number of <font color="#dd0000" face="black">100</font> orders, sorted by time of insertion <b>(starting from the most recent order to the oldest order)</b>.
+* Query by order system ID ( orderSysID ): 
++ If orderSysID is not specified, it will query the maximum number of <font color="#dd0000" face="black">100</font> orders, sorted by time of insertion <b>(starting from the most recent order to the oldest order)</b>.
++ If users query with timestamps, the startTimestamp should be the newer timestamp and endTimestamp timestamp should be the older timestamp. In other words, the startTimestamp should be larger than the endTimestamp.
 <br />
-根据系统订单ID（ orderSysID ）查询订单：如果不指定 orderSysID ，最多返回<font color="#dd0000" face = "black">100</font>条订单，按照下单时间排序<b>（最近的订单排在最前面）</b>。
+根据系统订单ID（ orderSysID ）查询订单：
++ 如果不指定 orderSysID ，最多返回<font color="#dd0000" face = "black">100</font>条订单，按照下单时间排序<b>（最近的订单排在最前面）</b>。
++ 如果用户用时间戳进行查询, startTimestamp 应为较新的时间戳, endTimestamp 应为较旧的时间戳. 换句话说, startTimestamp 应该设的比 endTimestamp 大.
 
   - Method: POST
   - Version: v1
@@ -537,8 +541,8 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
   
 ```javascript
 {//example
-    "startTimestamp": "1420675555123",    //Trade timestamp starts with recent trades (optional) ^从较近的订单时间戳开始查询（非必填）
-    "endTimestamp": "1420674445123",      //Trade timestamp ends with older trades (optional) ^到较早的订单时间戳结束查询（非必填）
+    "startTimestamp": "1420675555123",    //Trade timestamp starts with recent trades (optional) ^从较近的成交时间戳开始查询（非必填）
+    "endTimestamp": "1420674445123",      //Trade timestamp ends with older trades (optional) ^到较早的成交时间戳结束查询（非必填）
     "instrumentID": "ETH-BTC"        //Instrument ID (optional) ^合约ID（非必填）
 }
 ```
@@ -565,9 +569,9 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
 ]
 ```
 
-Query the maximum number of <font color="#dd0000" face="black">100</font> trades which is sorted by traded time <b>(starting from most recent trade to the oldest trade)</b>.
+Query the maximum number of <font color="#dd0000" face="black">100</font> trades which is sorted by traded time <b>(starting from most recent trade to the oldest trade)</b>. If users query with timestamps, the startTimestamp should be the newer timestamp and endTimestamp timestamp should be the older timestamp. In other words, the startTimestamp should be larger than the endTimestamp.
 
-最多查询 <font color="#dd0000" face="black">100</font> 条成交，按照成交时间排序<b>（最近的成交排在最前面）</b>。
+最多查询 <font color="#dd0000" face="black">100</font> 条成交，按照成交时间排序<b>（最近的成交排在最前面）</b>。 如果用户用时间戳进行查询, startTimestamp 应为较新的时间戳, endTimestamp 应为较旧的时间戳。换句话说, startTimestamp 应该设的比 endTimestamp 大。
 
 * Method: POST
 * Version: v1
