@@ -490,8 +490,8 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
     
 ```javascript
 {//example
-    "startTimestamp": "1420674445123",    //Start timestamp of query (optional) ^查询起始时间戳（非必填）
-    "endTimestamp": "1420674567123",      //End timestamp of query (optional) ^查询结束时间戳（非必填）
+    "startTimestamp": "1420675555123",    //Order timestamp starts with recent orders (optional) ^从较近的订单时间戳开始查询（非必填）
+    "endTimestamp": "1420674445123",      //Order timestamp ends with older orders (optional) ^到较早的订单时间戳结束查询（非必填）
     "orderStatus": "active",           //Order status (optional) {(active-order still in order book, corresponding to status 1, 3), (closed-order not in order book, corresponding to status 0, 2, 4, 5, 6), (not specified or an empty string - all status)} ^订单状态（非必填）{(active-订单在订单簿中，对应状态1、3), (closed-订单不在订单簿中，对应状态0、2、4、5、6), (未指定本项或本项为空字符串-对应所有状态)｝。
     "instrumentID": "ETH-BTC",         //Instrument ID (optional) ^合约ID（非必填）
     "orderSysID": "1412943752000004"   //Order system ID (optional) ^系统订单ID（非必填）
@@ -537,8 +537,8 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
   
 ```javascript
 {//example
-    "startTimestamp": "1420674445123",  //Start timestamp of query (optional) ^查询起始时间戳（非必填）
-    "endTimestamp": "1420674445123",    //End timestamp of query (optional) ^查询结束时间戳（非必填）
+    "startTimestamp": "1420675555123",    //Trade timestamp starts with recent trades (optional) ^从较近的订单时间戳开始查询（非必填）
+    "endTimestamp": "1420674445123",      //Trade timestamp ends with older trades (optional) ^到较早的订单时间戳结束查询（非必填）
     "instrumentID": "ETH-BTC"        //Instrument ID (optional) ^合约ID（非必填）
 }
 ```
