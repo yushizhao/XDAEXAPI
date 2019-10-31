@@ -537,6 +537,7 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
   
 ```javascript
 {//example
+    "tradeId": "141334225600003",         //trade ID (optional) ^成交ID（非必填）
     "startTimestamp": "1420675555555",    //Timestamp starts from (optional) ^从此时间戳开始查询（非必填）
     "endTimestamp": "1420675666666",      //Timestamp ends with (optional) ^到此时间戳结束查询（非必填）
     "instrumentID": "ETH-BTC"        //Instrument ID (optional) ^合约ID（非必填）
@@ -565,9 +566,9 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
 ]
 ```
 
-Query the maximum number of <font color="#dd0000" face="black">100</font> trades which is sorted by traded time <b>(starting from most recent trade to the oldest trade)</b>. 
+Query with trade ID will return the maximum number of <font color="#dd0000" face="black">100</font> trades whose trade IDs are greater than or equal to the input trade ID. If both trade ID and timestamp are provided, only trade ID will be used for query. If neither trade ID nor timestamp is provided, query the maximum number of <font color="#dd0000" face="black">100</font> trades which are sorted by traded time <b>(starting from most recent trade to the oldest trade)</b>. 
 
-最多查询 <font color="#dd0000" face="black">100</font> 条成交，按照成交时间排序<b>（最近的成交排在最前面）</b>。 
+用成交ID进行查询时将返回最多一百条成交ID大于或等于输入成交ID的成交。如果成交ID和时间戳都输入了，那么只会根据成交ID来查询。如果成交ID或时间戳都没有输入，那么将查询最多 <font color="#dd0000" face="black">100</font> 条成交，按照成交时间排序<b>（最近的成交排在最前面）</b>。 
 
 * Method: POST
 * Version: v1
