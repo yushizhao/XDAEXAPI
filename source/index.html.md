@@ -554,12 +554,12 @@ Similar to cancelling orders, there are two ways to query orders: either by orde
         "instrumentID": "ETH-BTC",              //Instrument ID ^合约ID
         "direction": "buy",                     //Direction: buy/sell ^方向：买/卖
         "price": "1.1",                         //Trade price ^成交价格
-        "priceSource": "buy",                   //Source of trade price ^成交价来源
         "volume": "5.23512",                    //Traded volume in the execution ^本次成交的数量
         "fee": "0.1",                           //Fee ^手续费
         "tradeDate": "20180829",                //Date of trade ^成交日期
         "tradeTime": "07:45:10",                //Time of trade ^成交时间
-        "tradeTimestamp": "1420674445123"          //Timestamp of trade ^成交时间戳
+        "tradeTimestamp": "1420674445123",      //Timestamp of trade ^成交时间戳
+        "role": "maker",                        //"taker" or "maker" ^获得或提供流动性 
     },
     ...
 ]
